@@ -1,12 +1,22 @@
 package com.rk_exxec.hexlands_struct;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import java.util.regex.Pattern; 
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.regex.Pattern;
+
+import javax.management.RuntimeErrorException;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -22,6 +32,8 @@ public class HexlandsCentering
 
     public static final Logger LOGGER = LogManager.getLogger(HexlandsCentering.MODID);
 
+    public static final ResourceLocation HEXLANDS = ResourceLocation.fromNamespaceAndPath("hexlands", "hexlands");
+
     public HexlandsCentering(FMLJavaModLoadingContext context)
     {
         LOGGER.info("Hello from " + MODID);
@@ -34,12 +46,17 @@ public class HexlandsCentering
         MinecraftForge.EVENT_BUS.register(this);
 
         // // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        context.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        // context.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
     }
+
+
 
     // @SubscribeEvent
     public void commonSetup(FMLCommonSetupEvent e){
-
-
+        
+        // if(BuiltInRegistries.CHUNK_GENERATOR.containsKey(HEXLANDS)){
+        //     LOGGER.info("Found hexlands");
+        // }
+        // else throw new RuntimeException("hexlands not found");
     }
 }
