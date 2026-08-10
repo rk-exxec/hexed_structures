@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.rk_exxec.hexlands_struct.mixins",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "random_bag.refmap.json",
+  "refmap": "hexlands_struct.refmap.json",
   "mixins": [
     "HexChunkGeneratorAccessor",
     "StructurePositionMixin"

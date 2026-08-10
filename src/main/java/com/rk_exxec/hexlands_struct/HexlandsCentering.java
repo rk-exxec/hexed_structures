@@ -1,5 +1,6 @@
 package com.rk_exxec.hexlands_struct;
 
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.regex.Pattern;
@@ -21,6 +23,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import org.apache.logging.log4j.Logger;
+
+import com.rk_exxec.hexlands_struct.worldgen.placement.HexCenterPlacement;
+
 import org.apache.logging.log4j.LogManager;
 
 
@@ -40,6 +45,8 @@ public class HexlandsCentering
         IEventBus modEventBus = context.getModEventBus();
         // Register custom structure types for datapack structures
         // ModStructureTypes.STRUCTURE_TYPES.register(modEventBus);
+        
+        // var dr = DeferredRegister.create(Registries.STRUCTURE_PLACEMENT, MODID);
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in
@@ -47,13 +54,15 @@ public class HexlandsCentering
 
         // // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         // context.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        // dr.register("hex_center", () -> {return HexCenterPlacement.CODEC;});
+        
     }
 
 
 
     // @SubscribeEvent
     public void commonSetup(FMLCommonSetupEvent e){
-        
+        HexCenterPlacement.HEX_CENTER = Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, MODID + ":hex_center", () -> {return HexCenterPlacement.CODEC;});
         // if(BuiltInRegistries.CHUNK_GENERATOR.containsKey(HEXLANDS)){
         //     LOGGER.info("Found hexlands");
         // }

@@ -33,6 +33,8 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
    // private final int separation;
    // private final RandomSpreadType spreadType;
 
+   public static StructurePlacementType<HexCenterPlacement> HEX_CENTER;
+
    private static DataResult<HexCenterPlacement> validate(HexCenterPlacement placement) {
       return placement.spacing() <= placement.separation() ? DataResult.error(() -> {
          return "Spacing has to be larger than separation";
@@ -91,6 +93,6 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
    }
 
    public StructurePlacementType<?> type() {
-      return StructurePlacementType.RANDOM_SPREAD;
+      return HEX_CENTER;
    }
 }
