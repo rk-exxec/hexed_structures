@@ -2,6 +2,7 @@ package com.rk_exxec.hexlands_struct.worldgen.placement;
 
 import com.alcatrazescapee.hexlands.util.Hex;
 import com.alcatrazescapee.hexlands.util.HexSettings;
+import com.rk_exxec.hexlands_struct.HexlandsCentering;
 import com.rk_exxec.hexlands_struct.worldgen.HexWorldgenContext;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -9,6 +10,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.Optional;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
@@ -80,16 +82,36 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
       if (hexSettings == null) {
          return super.getPotentialStructureChunk(seed, chX, chZ);
       }
+      
       final double hexScale = hexSettings.biomeScale();
-      final double hexSize = hexSettings.hexSize() * hexScale;
-      final Hex hex = Hex.blockToHex(chunkPos.getMiddleBlockPosition(0).getX() * hexScale, chunkPos.getMiddleBlockPosition(0).getZ() * hexScale, hexSize);
+      final double hexSize = hexSettings.hexSize();
+      final Hex hex = Hex.blockToHex(chunkPos.getMiddleBlockX(), chunkPos.getMiddleBlockZ(), hexSize);
+      ChunkPos center = new ChunkPos(hex.center());
+      HexlandsCentering.LOGGER.debug("Currently testing hex " + hex + " containing chunk " + chunkPos + " - Center chunk is " + center);
       // returns chunk most center of hex
-      return new ChunkPos(hex.center().getX(), hex.center().getZ());
+      
+      // check enough space to border, needs adjustment config latrer
+      return center;
    }
 
+   @Override
    protected boolean isPlacementChunk(@Nonnull ChunkGeneratorStructureState p_256267_, int p_256050_, int p_255975_) {
-      ChunkPos chunkpos = this.getPotentialStructureChunk(p_256267_.getLevelSeed(), p_256050_, p_255975_);
-      return chunkpos.x == p_256050_ && chunkpos.z == p_255975_;
+      ChunkPos chunkPos = this.getPotentialStructureChunk(p_256267_.getLevelSeed(), p_256050_, p_255975_);
+      // HexSettings hexSettings = HexWorldgenContext.currentHexSettings().orElse(null);
+      // if (hexSettings == null) {
+      //    return super.isPlacementChunk(p_256267_, p_256050_, p_255975_);
+      // }
+      // final double hexScale = hexSettings.biomeScale();
+      // final double hexSize = hexSettings.hexSize();
+      // final Hex hex = Hex.blockToHex(chunkPos.getMiddleBlockX(), chunkPos.getMiddleBlockZ(), hexSize);
+      // returns chunk most center of hex
+      // ChunkPos hexCenterChunk = new ChunkPos(hex.center());
+      // check enough space to border, needs adjustment config latrer
+      // double delta = Math.max(Math.abs(hex.x() - chunkPos.getMiddleBlockX()) , Math.abs(hex.z()- chunkPos.getMiddleBlockZ()));
+
+      boolean result = chunkPos.x == p_256050_ && chunkPos.z == p_255975_;//delta < 8;
+      HexlandsCentering.LOGGER.debug("Did " + (result?"":"not") + " match");
+      return result;
    }
 
    public StructurePlacementType<?> type() {

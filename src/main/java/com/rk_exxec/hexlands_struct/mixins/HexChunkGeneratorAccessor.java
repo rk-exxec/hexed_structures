@@ -9,5 +9,5 @@ import com.alcatrazescapee.hexlands.world.HexChunkGenerator;
 @Mixin(HexChunkGenerator.class)
 public interface HexChunkGeneratorAccessor {
     @Accessor("hexSettings")
-    HexSettings getHexSettings();
+    HexSettings hexcenter$getHexSettings();
 }

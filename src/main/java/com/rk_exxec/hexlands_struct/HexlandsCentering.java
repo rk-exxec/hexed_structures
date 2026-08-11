@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.Loader;
 
+import com.alcatrazescapee.hexlands.HexLands;
 import com.rk_exxec.hexlands_struct.worldgen.placement.HexCenterPlacement;
 
 import org.apache.logging.log4j.LogManager;
@@ -54,7 +56,6 @@ public class HexlandsCentering
 
         // // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         // context.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
-        // dr.register("hex_center", () -> {return HexCenterPlacement.CODEC;});
         
     }
 
@@ -63,9 +64,6 @@ public class HexlandsCentering
     // @SubscribeEvent
     public void commonSetup(FMLCommonSetupEvent e){
         HexCenterPlacement.HEX_CENTER = Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, MODID + ":hex_center", () -> {return HexCenterPlacement.CODEC;});
-        // if(BuiltInRegistries.CHUNK_GENERATOR.containsKey(HEXLANDS)){
-        //     LOGGER.info("Found hexlands");
-        // }
-        // else throw new RuntimeException("hexlands not found");
+
     }
 }

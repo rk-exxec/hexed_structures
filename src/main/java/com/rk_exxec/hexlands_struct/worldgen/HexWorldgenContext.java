@@ -28,6 +28,6 @@ public final class HexWorldgenContext {
             return Optional.empty();
         }
 
-        return Optional.of(((HexChunkGeneratorAccessor) (Object) generator).getHexSettings());
+        return Optional.of(((HexChunkGeneratorAccessor) (Object) generator).hexcenter$getHexSettings());
     }
 }

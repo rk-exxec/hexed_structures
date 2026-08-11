@@ -6,7 +6,8 @@
   "refmap": "hexlands_struct.refmap.json",
   "mixins": [
     "HexChunkGeneratorAccessor",
-    "StructurePositionMixin"
+    "StructurePositionMixin",
+    "ChunkGeneratorMixin"
   ],
   "client": [
 
