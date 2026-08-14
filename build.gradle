@@ -14,8 +14,8 @@ base {
 
 mixin {
     // MixinGradle Settings
-    add sourceSets.main, 'hexlands_struct.refmap.json'
-    config 'hexlands_struct.mixins.json'
+    add sourceSets.main, 'hexed_structures.refmap.json'
+    config 'hexed_structures.mixins.json'
 
     debug.verbose = true
     debug.export = true

@@ -1,13 +1,18 @@
-package com.rk_exxec.hexlands_struct.worldgen;
+package com.rk_exxec.hexed_structures.worldgen;
 
 import java.util.Optional;
 
 import com.alcatrazescapee.hexlands.util.HexSettings;
 import com.alcatrazescapee.hexlands.world.HexChunkGenerator;
-import com.rk_exxec.hexlands_struct.mixins.HexChunkGeneratorAccessor;
+import com.rk_exxec.hexed_structures.mixins.HexChunkGeneratorAccessor;
 
 import net.minecraft.world.level.chunk.ChunkGenerator;
 
+/**
+ * 
+ * HexWorldgenContext
+ * storage class for current chunk generator type
+ */
 public final class HexWorldgenContext {
     private static final ThreadLocal<ChunkGenerator> CURRENT_GENERATOR = new ThreadLocal<>();
 

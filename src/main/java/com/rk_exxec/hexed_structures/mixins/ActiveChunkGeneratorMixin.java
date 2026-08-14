@@ -1,7 +1,7 @@
-package com.rk_exxec.hexlands_struct.mixins;
+package com.rk_exxec.hexed_structures.mixins;
 
 import com.mojang.datafixers.util.Pair;
-import com.rk_exxec.hexlands_struct.worldgen.HexWorldgenContext;
+import com.rk_exxec.hexed_structures.worldgen.HexWorldgenContext;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -20,8 +20,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * 
+ * ActiveChunkGeneratorMixin
+ * stores current chunk generator to the storage during the important generation function calls
+ */
 @Mixin(ChunkGenerator.class)
-public class StructurePositionMixin {
+public class ActiveChunkGeneratorMixin {
     @Inject(method = "createStructures", at = @At("HEAD"))
     private void hexlands_struct$pushCreateStructuresContext(RegistryAccess registryAccess, ChunkGeneratorStructureState structureState, StructureManager structureManager, ChunkAccess chunkAccess, StructureTemplateManager templateManager, CallbackInfo callbackInfo) {
         HexWorldgenContext.push((ChunkGenerator) (Object) this);

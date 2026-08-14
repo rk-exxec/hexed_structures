@@ -1,13 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.rk_exxec.hexlands_struct.mixins",
+  "package": "com.rk_exxec.hexed_structures.mixins",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "hexlands_struct.refmap.json",
+  "refmap": "hexed_structures.refmap.json",
   "mixins": [
     "HexChunkGeneratorAccessor",
-    "StructurePositionMixin",
-    "ChunkGeneratorMixin"
+    "ActiveChunkGeneratorMixin"
   ],
   "client": [
 

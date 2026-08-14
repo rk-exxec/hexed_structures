@@ -1,4 +1,4 @@
-package com.rk_exxec.hexlands_struct.mixins;
+package com.rk_exxec.hexed_structures.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
