@@ -1,6 +1,7 @@
-# Better Hexlands Structure Placement
+# HexLands Add-On: Hexed Structures
 
-Add-on for your [HexLands](https://www.curseforge.com/minecraft/mc-mods/hexlands-ii) world to enable you to place custom structures only in the center of hexes.
+Add-on for your [HexLands](https://www.curseforge.com/minecraft/mc-mods/hexlands-ii) world   
+to enable you to place custom structures only in the center of hexes.
 
 ![alt text](image.png)
 
