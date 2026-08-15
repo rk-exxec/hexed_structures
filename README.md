@@ -5,6 +5,7 @@ to enable you to place custom structures only in the center of hexes.
 
 ![alt text](images/image.png)
 
+
 ## Usage
 In the datapack for your structure modify the structure/mystruct.json:
 
@@ -47,4 +48,4 @@ and the structure_set/myset.json:
 All other parameters work like vanilla. The base for the placement selection is the normal RandomSpread.
 
 ## Note
-Make sure your structures centers are properly configured or they might be misaligned.
+Structures are shifted so the bounding box center is over the hexagon center.
