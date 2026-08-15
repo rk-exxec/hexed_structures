@@ -8,6 +8,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rk_exxec.hexed_structures.HexedStructures;
 import com.rk_exxec.hexed_structures.worldgen.HexWorldgenContext;
+import com.rk_exxec.hexed_structures.worldgen.structure.pools.HexJigsawPlacement;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -64,19 +65,19 @@ public class HexJigsawStructure extends Structure {
         ChunkPos chunkPos = context.chunkPos();
         int startY = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
         BlockPos startPos = new BlockPos(chunkPos.getMinBlockX(), startY, chunkPos.getMinBlockZ());
-
         // -- custom part start
         // pull hex settings if available, fallback to "vanilla" behavior otherwise
         HexSettings hexSettings = HexWorldgenContext.currentHexSettings().orElse(null);
         if (hexSettings != null) {
             Hex hex = Hex.blockToHex(startPos.getX(), startPos.getZ(), hexSettings.hexSize());
             startPos = hex.center(); // move structure start to actual actual center, not just center chunk
+
             HexedStructures.LOGGER.debug("Centered structure for hex "+ hex);
         }
         // -- custom part end
         // yes for this i needed an entire new thing, cus mixins suck
 
-        return JigsawPlacement.addPieces(
+        return HexJigsawPlacement.addPieces(
             context,
             this.startPool,
             this.startJigsawName,
