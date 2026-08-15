@@ -3,8 +3,8 @@
 Add-on for your [HexLands](https://www.curseforge.com/minecraft/mc-mods/hexlands-ii) world   
 to enable you to place custom structures only in the center of hexes.
 
-![alt text](images/image.png)
-
+![alt text](images/image.png)  
+Screenshot from [Compression Modpack](https://www.curseforge.com/minecraft/modpacks/compression) used to test the feature.
 
 ## Usage
 In the datapack for your structure modify the structure/mystruct.json:
