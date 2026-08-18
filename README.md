@@ -1,5 +1,10 @@
 # HexLands Add-On: Hexed Structures
 
+![CurseForge Downloads](https://img.shields.io/curseforge/dt/1652811?style=flat&logo=curseforge&logoColor=%23F16436&label=CurseForge)
+
+
+
+
 Add-on for your [HexLands](https://www.curseforge.com/minecraft/mc-mods/hexlands-ii) world   
 to enable you to place custom structures only in the center of hexes.
 
