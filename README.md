@@ -1,9 +1,6 @@
 # HexLands Add-On: Hexed Structures
 
-![CurseForge Downloads](https://img.shields.io/curseforge/dt/1652811?style=for-the-badge&logo=curseforge&logoColor=23F16436&label=CurseForge&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft%2Fmc-mods%2Fhexed-structures
-)
-
-
+<a href="https://www.curseforge.com/minecraft/mc-mods/hexed-structures"> <img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1652811?style=for-the-badge&logo=curseforge&logoColor=23F16436&label=CurseForge"></a>
 
 
 Add-on for your [HexLands](https://www.curseforge.com/minecraft/mc-mods/hexlands-ii) world   
