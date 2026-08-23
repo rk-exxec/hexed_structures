@@ -115,7 +115,7 @@ public class HexJigsawPlacement extends JigsawPlacement{
             if (pProjectStartToHeightmap.isPresent()) {
                 k = pPos.getY() + chunkgenerator.getFirstFreeHeight(i, j, pProjectStartToHeightmap.get(), levelheightaccessor, pContext.randomState());
             } else {
-                k = blockpos1.getY();
+                k = pPos.getY();
             }
 
             int l = boundingbox.minY() + poolelementstructurepiece.getGroundLevelDelta();
