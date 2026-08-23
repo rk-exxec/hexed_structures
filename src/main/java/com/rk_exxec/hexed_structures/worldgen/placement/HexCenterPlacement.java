@@ -14,6 +14,9 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import javax.annotation.Nonnull;
+
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
@@ -32,8 +35,9 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
 
    public static StructurePlacementType<HexCenterPlacement> HEX_CENTER;
 
+
    private static DataResult<HexCenterPlacement> validate(HexCenterPlacement placement) {
-      return placement.spacing() <= placement.separation() ? DataResult.error(() -> {
+      return placement.spacing <= placement.separation ? DataResult.error(() -> {
          return "Spacing has to be larger than separation";
       }) : DataResult.success(placement);
    }
@@ -54,13 +58,25 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
       if (hexSettings == null) {
          return super.getPotentialStructureChunk(seed, chX, chZ);
       }
-      final double hexSize = hexSettings.hexSize();
-      final Hex hex = Hex.blockToHex(chunkPos.getMiddleBlockX(), chunkPos.getMiddleBlockZ(), hexSize);
+      final int hexSize = (int)hexSettings.hexSize();
+      int i = Math.floorDiv(chX, (int)(this.spacing));
+      int j = Math.floorDiv(chZ, (int)(this.spacing));
+      WorldgenRandom worldgenrandom = new WorldgenRandom(new LegacyRandomSource(0L));
+      worldgenrandom.setLargeFeatureWithSalt(seed, i, j, this.salt());
+      int k = this.spacing - this.separation;
+      int l = this.spreadType().evaluate(worldgenrandom, k);
+      int i1 = this.spreadType().evaluate(worldgenrandom, k);
+      ChunkPos potHexChunk = new ChunkPos(i * this.spacing + l, j * this.spacing + i1);
+      final Hex hex = Hex.blockToHex(potHexChunk.getMiddleBlockX(), potHexChunk.getMiddleBlockZ(), hexSize);
 
-      //TODO randomly select an adjacent hex here with number from 0 to 6, 0 being current hex ??
+      // int dir = worldgenrandom.nextIntBetweenInclusive(0,5);
+      // float rQ = (this.separation + this.spreadType().evaluate(worldgenrandom, this.spacing - this.separation)) * (dir % 2 == 0?-1:1);
+      // float rR = (this.spacing - rQ) * (dir / 2 == 0?-1:1) ;
+
+      // Hex nHex = hex.adjacent(rQ, rR);
       ChunkPos center = new ChunkPos(hex.center());
-      if(chX == center.x && chZ == center.z)
-      HexedStructures.LOGGER.debug(hex + " has pot structure chunk " + chunkPos);
+      // if(chX == center.x && chZ == center.z)
+      // HexedStructures.LOGGER.debug(hex + "(" + center + ")" + " has pot structure chunk " + chunkPos);
       // returns chunk most center of hex
       return center;
    }
@@ -69,7 +85,7 @@ public class HexCenterPlacement extends RandomSpreadStructurePlacement {
    protected boolean isPlacementChunk(@Nonnull ChunkGeneratorStructureState p_256267_, int p_256050_, int p_255975_) {
       ChunkPos chunkPos = this.getPotentialStructureChunk(p_256267_.getLevelSeed(), p_256050_, p_255975_);
       boolean result = chunkPos.x == p_256050_ && chunkPos.z == p_255975_;//delta < 8;
-      // HexlandsCentering.LOGGER.debug("Did " + (result?"":"not ") + "match");
+      // HexedStructures.LOGGER.debug("Did " + (result?"":"not ") + "match");
       return result;
    }
 
