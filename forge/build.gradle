@@ -17,7 +17,7 @@ legacyForge {
 
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
-        accessTransformers = [at.path]
+        accessTransformers.from at.path
     }
     parchment {
         minecraftVersion = parchment_minecraft
@@ -48,10 +48,11 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    implementation("curse.maven:hexlands-ii-522216:4575834")
+    modImplementation("curse.maven:hexlands-ii-522216:4575834")
 
-    runtimeOnly("blank:Paxi-1.20-Forge-4.0:4.0")
-    runtimeOnly("blank:YungsApi-1.20-Forge-4.0.6:4.0.6")
+    // modRuntimeOnly("blank:hexlands-forge-1.20-5.0.0")
+    modRuntimeOnly("blank:Paxi-1.20-Forge-4.0:4.0")
+    modRuntimeOnly("blank:YungsApi-1.20-Forge-4.0.6:4.0.6")
 }
 
 jar {

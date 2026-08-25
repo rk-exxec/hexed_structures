@@ -14,17 +14,4 @@ import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement
 
 public final class ModStructurePlacementTypes {
     public static StructurePlacementType<HexCenterPlacement> HEX_CENTER;
-    public static void register() {
-        HEX_CENTER = register("center", HexCenterPlacement.CODEC);
-        // Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, new ResourceLocation(Constants.MODID, "center"), HexCenterPlacement.);//() -> new StructurePlacementType<HexCenterPlacement>() {
-        //     @Override
-        //     public Codec<HexCenterPlacement> codec() {
-        //         return HexCenterPlacement.CODEC;
-        //     }
-        // });
-    }
-
-    private static <SP extends StructurePlacement> StructurePlacementType<SP> register(String name, Codec<SP> codec) {
-        return (StructurePlacementType)Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, new ResourceLocation(Constants.MODID, name), (StructurePlacementType)() -> codec);
-   }
 }

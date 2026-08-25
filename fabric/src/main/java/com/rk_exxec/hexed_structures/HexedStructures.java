@@ -2,8 +2,8 @@ package com.rk_exxec.hexed_structures;
 
 import net.fabricmc.api.ModInitializer;
 
-import com.rk_exxec.hexed_structures.worldgen.placement.ModStructurePlacementTypes;
-import com.rk_exxec.hexed_structures.worldgen.structure.ModStructureTypes;
+import com.rk_exxec.hexed_structures.worldgen.placement.FabricStructurePlacementTypes;
+import com.rk_exxec.hexed_structures.worldgen.structure.FabricStructureTypes;
 
 public class HexedStructures implements ModInitializer {
     
@@ -16,8 +16,8 @@ public class HexedStructures implements ModInitializer {
 
         // Use Fabric to bootstrap the Common mod.
         Constants.LOGGER.info("Hello Fabric world!");
-        ModStructurePlacementTypes.register();
-        ModStructureTypes.register();
+        FabricStructurePlacementTypes.register();
+        FabricStructureTypes.register();
         CommonClass.init();
     }
 }

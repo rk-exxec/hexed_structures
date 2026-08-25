@@ -14,8 +14,18 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 
-public final class ModStructureTypes {
+public final class FabricStructureTypes {
 
-    public static StructureType<HexJigsawStructure> HEX_JIGSAW;
+    public static void register() {
+        ModStructureTypes.HEX_JIGSAW = register("jigsaw", HexJigsawStructure.CODEC);// () -> new StructureType<HexJigsawStructure>() {
+        //     @Override
+        //     public Codec<HexJigsawStructure> codec() {
+        //         return HexJigsawStructure.CODEC;
+        //     }
+        // });
+    }
 
+    private static <SP extends Structure> StructureType<SP> register(String name, Codec<SP> codec) {
+        return (StructureType)Registry.register(BuiltInRegistries.STRUCTURE_TYPE, new ResourceLocation(Constants.MODID, name), (StructureType)() -> codec);
+   }
 }

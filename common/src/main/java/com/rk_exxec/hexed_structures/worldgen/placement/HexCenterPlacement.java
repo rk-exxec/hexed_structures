@@ -7,6 +7,7 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rk_exxec.hexed_structures.Constants;
 import com.rk_exxec.hexed_structures.worldgen.HexWorldgenContext;
+import com.rk_exxec.hexed_structures.worldgen.placement.ModStructurePlacementTypes;
 
 import java.util.Optional;
 import net.minecraft.core.Vec3i;

@@ -9,6 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rk_exxec.hexed_structures.Constants;
 import com.rk_exxec.hexed_structures.worldgen.HexWorldgenContext;
 import com.rk_exxec.hexed_structures.worldgen.structure.pools.HexJigsawPlacement;
+import com.rk_exxec.hexed_structures.worldgen.structure.ModStructureTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
