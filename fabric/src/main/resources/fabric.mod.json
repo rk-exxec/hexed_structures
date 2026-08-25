@@ -12,7 +12,7 @@
         "sources": "https://github.com/rk-exxec/hexed_structures"
     },
     "license": "${license}",
-    "icon": "assets/modid/${mod_id}.png",
+    "icon": "images/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
