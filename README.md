@@ -23,6 +23,10 @@ In the datapack for your structure modify the structure/mystruct.json:
     "start_height": {
         "absolute": 0
     },
+    "valid_height_range":{             <----- optional height limit (new in 1.2.0)
+        "min": 50,
+        "max": 180
+    },
     "start_pool": "my:pool",
     "step": "surface_structures",
     "terrain_adaptation": "beard_thin",
