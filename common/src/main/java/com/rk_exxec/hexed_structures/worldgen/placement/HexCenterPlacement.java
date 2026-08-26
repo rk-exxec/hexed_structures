@@ -30,8 +30,13 @@ import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement
  * Only returns nearest hexagon center as valid chunks, not really random
  */
 public class HexCenterPlacement extends RandomSpreadStructurePlacement {
-   public static final Codec<HexCenterPlacement> CODEC = ExtraCodecs.validate(RecordCodecBuilder.mapCodec((p_204996_) -> {
-      return placementCodec(p_204996_).and(p_204996_.group(Codec.intRange(0, 4096).fieldOf("spacing").forGetter(HexCenterPlacement::spacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(HexCenterPlacement::separation), RandomSpreadType.CODEC.optionalFieldOf("spread_type", RandomSpreadType.LINEAR).forGetter(HexCenterPlacement::spreadType))).apply(p_204996_, HexCenterPlacement::new);
+   public static final Codec<HexCenterPlacement> CODEC = ExtraCodecs.validate(RecordCodecBuilder.mapCodec((instance) -> {
+      return placementCodec(instance).and(
+         instance.group(
+            Codec.intRange(0, 4096).fieldOf("spacing").forGetter(HexCenterPlacement::spacing), 
+            Codec.intRange(0, 4096).fieldOf("separation").forGetter(HexCenterPlacement::separation), 
+            RandomSpreadType.CODEC.optionalFieldOf("spread_type", RandomSpreadType.LINEAR).forGetter(HexCenterPlacement::spreadType)
+      )).apply(instance, HexCenterPlacement::new);
    }), HexCenterPlacement::validate).codec();
 
    // public static StructurePlacementType<HexCenterPlacement> HEX_CENTER;
