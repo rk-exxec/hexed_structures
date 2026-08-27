@@ -93,9 +93,9 @@ public class HexJigsawStructure extends Structure {
         int i = chunkpos.getMiddleBlockX();
         int j = chunkpos.getMiddleBlockZ();
         int firstValidHeight = context.chunkGenerator().getFirstOccupiedHeight(i, j, this.projectStartToHeightmap.get(), context.heightAccessor(), context.randomState());
-        Constants.LOGGER.info("Hex range: " + heightRange.lower() + " | " + heightRange.upper() + " || StartY: " + firstValidHeight);
+        // Constants.LOGGER.info("Hex range: " + heightRange.lower() + " | " + heightRange.upper() + " || StartY: " + firstValidHeight);
         if(firstValidHeight < heightRange.lower() || firstValidHeight > heightRange.upper()) return Optional.empty();
-        Constants.LOGGER.info("Hex is valid");
+        // Constants.LOGGER.info("Hex is valid");
         // ----
 
         int startY = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
