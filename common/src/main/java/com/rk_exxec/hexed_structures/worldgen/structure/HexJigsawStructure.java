@@ -87,11 +87,19 @@ public class HexJigsawStructure extends Structure {
 
     @Override
     public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
-        ChunkPos chunkPos = context.chunkPos();
-        int startY = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
+        ChunkPos chunkpos = context.chunkPos();
+
         // stop generation if not in height range
-        if(startY < heightRange.lower() || startY > heightRange.upper()) return Optional.empty();
-        BlockPos startPos = new BlockPos(chunkPos.getMinBlockX(), startY, chunkPos.getMinBlockZ());
+        int i = chunkpos.getMiddleBlockX();
+        int j = chunkpos.getMiddleBlockZ();
+        int firstValidHeight = context.chunkGenerator().getFirstOccupiedHeight(i, j, this.projectStartToHeightmap.get(), context.heightAccessor(), context.randomState());
+        Constants.LOGGER.info("Hex range: " + heightRange.lower() + " | " + heightRange.upper() + " || StartY: " + firstValidHeight);
+        if(firstValidHeight < heightRange.lower() || firstValidHeight > heightRange.upper()) return Optional.empty();
+        Constants.LOGGER.info("Hex is valid");
+        // ----
+
+        int startY = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
+        BlockPos startPos = new BlockPos(chunkpos.getMinBlockX(), startY, chunkpos.getMinBlockZ());
         // -- custom part start
         // pull hex settings if available, fallback to "vanilla" behavior otherwise
         HexSettings hexSettings = HexWorldgenContext.currentHexSettings().orElse(null);
